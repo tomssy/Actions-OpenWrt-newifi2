@@ -36,8 +36,8 @@ git clone https://github.com/jerrykuku/luci-app-argon-config package/luci-app-ar
 # rm -rf feeds/packages/net/haproxy && svn co https://github.com/lienol/openwrt-packages/trunk/net/haproxy feeds/packages/net/haproxy
 
 # 自定义定制选项
-sed -i 's#192.168.1.1#192.168.3.105#g' package/base-files/files/bin/config_generate #定制默认IP
-sed -i 's@.*CYXluq4wUazHjmCDBCqXF*@#&@g' package/lean/default-settings/files/zzz-default-settings #取消系统默认密码
+sed -i 's#192.168.1.1#192.168.123.1#g' package/base-files/files/bin/config_generate #定制默认IP
+#sed -i 's@.*CYXluq4wUazHjmCDBCqXF*@#&@g' package/lean/default-settings/files/zzz-default-settings #取消系统默认密码
 # sed -i 's#option commit_interval 24h#option commit_interval 10m#g' feeds/packages/net/nlbwmon/files/nlbwmon.config #修改流量统计写入为10分钟
 # sed -i 's#option database_directory /var/lib/nlbwmon#option database_directory /etc/config/nlbwmon_data#g' feeds/packages/net/nlbwmon/files/nlbwmon.config #修改流量统计数据存放默认位置
 # sed -i 's@background-color: #e5effd@background-color: #f8fbfe@g' package/luci-theme-edge/htdocs/luci-static/edge/cascade.css #luci-theme-edge主题颜色微调
@@ -82,122 +82,148 @@ touch ./.config
 # 
 
 # 编译nwf3固件:
-cat >> .config <<EOF
+#
+# 机型选择
+#
 CONFIG_TARGET_ramips=y
 CONFIG_TARGET_ramips_mt7621=y
 CONFIG_TARGET_ramips_mt7621_DEVICE_d-team_newifi-d2=y
-EOF
 
-# 固件压缩:
-cat >> .config <<EOF
-CONFIG_TARGET_ROOTFS_INITRAMFS=y
-# CONFIG_TARGET_INITRAMFS_COMPRESSION_NONE is not set
-# CONFIG_TARGET_INITRAMFS_COMPRESSION_GZIP is not set
-# CONFIG_TARGET_INITRAMFS_COMPRESSION_BZIP2 is not set
-CONFIG_TARGET_INITRAMFS_COMPRESSION_LZMA=y
-# CONFIG_TARGET_INITRAMFS_COMPRESSION_LZO is not set
-# CONFIG_TARGET_INITRAMFS_COMPRESSION_LZ4 is not set
-# CONFIG_TARGET_INITRAMFS_COMPRESSION_XZ is not set
-CONFIG_EXTERNAL_CPIO=""
-# CONFIG_TARGET_INITRAMFS_FORCE is not set
-EOF
+#
+# IPV6支持
+#
+CONFIG_IPV6=y
+CONFIG_PACKAGE_dnsmasq_full_dhcpv6=y
+CONFIG_PACKAGE_ipv6helper=y
+CONFIG_PACKAGE_odhcp6c=y
+CONFIG_PACKAGE_odhcpd-ipv6only=y
+CONFIG_PACKAGE_luci-proto-ipv6=y
+CONFIG_PACKAGE_kmod-ipt-nat6=y
+CONFIG_PACKAGE_ipv6helper=y
+CONFIG_PACKAGE_kmod-ip6tables=y
+CONFIG_PACKAGE_kmod-ip6tables-extra=y
+CONFIG_PACKAGE_6in4=y
+
+#
+# samba扩展
+#
+CONFIG_PACKAGE_autosamba=n
+#CONFIG_PACKAGE_samba36-server is not set
 
 
-# IPv6支持:
-# cat >> .config <<EOF
-# CONFIG_PACKAGE_dnsmasq_full_dhcpv6 is not set
-# CONFIG_PACKAGE_ipv6helper is not set
-# EOF
 
-# 参考	
-cat >> .config <<EOF	
-CONFIG_HAS_SUBTARGETS=y
-CONFIG_HAS_DEVICES=y
-CONFIG_TARGET_BOARD="ramips"
-CONFIG_TARGET_SUBTARGET="mt7621"
-CONFIG_TARGET_PROFILE="DEVICE_d-team_newifi-d2"
-CONFIG_TARGET_ARCH_PACKAGES="mipsel_24kc"
-CONFIG_DEFAULT_TARGET_OPTIMIZATION="-Os -pipe -mno-branch-likely -mips32r2 -mtune=24kc"
-CONFIG_CPU_TYPE="24kc"
-CONFIG_LINUX_5_4=y
-CONFIG_DEFAULT_base-files=y
-CONFIG_DEFAULT_block-mount=y
-CONFIG_DEFAULT_busybox=y
-CONFIG_DEFAULT_ca-certificates=y
-CONFIG_DEFAULT_coremark=y
-CONFIG_DEFAULT_ddns-scripts_aliyun=y
-CONFIG_DEFAULT_ddns-scripts_dnspod=y
-CONFIG_DEFAULT_default-settings=y
-CONFIG_DEFAULT_dnsmasq-full=y
-CONFIG_DEFAULT_dropbear=y
-CONFIG_DEFAULT_firewall=y
-CONFIG_DEFAULT_fstools=y
-CONFIG_DEFAULT_iptables=y
-CONFIG_DEFAULT_iwinfo=y
-CONFIG_DEFAULT_kmod-gpio-button-hotplug=y
-CONFIG_DEFAULT_kmod-ipt-raw=y
-CONFIG_DEFAULT_kmod-leds-gpio=y
-CONFIG_DEFAULT_kmod-mt7603=y
-CONFIG_DEFAULT_kmod-mt76x2=y
-CONFIG_DEFAULT_kmod-nf-nathelper=y
-CONFIG_DEFAULT_kmod-nf-nathelper-extra=y
-CONFIG_DEFAULT_kmod-usb-ledtrig-usbport=y
-CONFIG_DEFAULT_kmod-usb3=y
-CONFIG_DEFAULT_libc=y
-CONFIG_DEFAULT_libgcc=y
-CONFIG_DEFAULT_libustream-openssl=y
-CONFIG_DEFAULT_logd=y
-CONFIG_DEFAULT_luci=y
-CONFIG_DEFAULT_luci-app-accesscontrol=y
-CONFIG_DEFAULT_luci-app-arpbind=y
-CONFIG_DEFAULT_luci-app-autoreboot=y
+#
+# USB与存储相关支持
+#
+CONFIG_PACKAGE_automount=y
+CONFIG_PACKAGE_kmod-fs-qntfs=y
+CONFIG_PACKAGE_kmod-scsi-core=y
+CONFIG_PACKAGE_kmod-fs-exfat=y
+CONFIG_PACKAGE_kmod-fs-ext4=y
+CONFIG_PACKAGE_ntfs-3g=y
+CONFIG_PACKAGE_kmod-fs-vfat=y
+CONFIG_PACKAGE_kmod-fuse=y
+CONFIG_PACKAGE_kmod-mtd-rw=y
+CONFIG_PACKAGE_kmod-mmc=y
+CONFIG_PACKAGE_kmod-sdhci=y
+CONFIG_PACKAGE_kmod-mmc-spi=y
+CONFIG_PACKAGE_kmod-usb-core=y
+CONFIG_PACKAGE_kmod-usb-dwc3=y
+CONFIG_PACKAGE_kmod-usb-dwc3-of-simple=y
+CONFIG_PACKAGE_kmod-usb-ehci=y
+CONFIG_PACKAGE_kmod-usb-ohci=y
+CONFIG_PACKAGE_kmod-usb-printer=y
+CONFIG_PACKAGE_kmod-usb-storage=y
+CONFIG_PACKAGE_kmod-usb-storage-extras=y
+CONFIG_PACKAGE_kmod-usb-uhci=y
+CONFIG_PACKAGE_kmod-usb2=y
+CONFIG_PACKAGE_kmod-usb3=y
+
+#
+# 无线驱动
+#
+CONFIG_PACKAGE_wireless-regdb=y
+CONFIG_PACKAGE_kmod-cfg80211=y
+CONFIG_PACKAGE_kmod-mac80211=y
+CONFIG_PACKAGE_MAC80211_DEBUGFS=y
+CONFIG_PACKAGE_MAC80211_MESH=y
+#use opensource wifi driver
+CONFIG_PACKAGE_kmod-mt7603=y
+CONFIG_PACKAGE_kmod-mt7603e=n
+CONFIG_PACKAGE_kmod-mt76x2=y
+CONFIG_PACKAGE_kmod-mt76x2-common=y
+CONFIG_PACKAGE_kmod-mt76x2e=n
+CONFIG_PACKAGE_wpad-openssl=y
+CONFIG_PACKAGE_wpa-supplicant=y
+
+#
+# 插件集成
+#
+CONFIG_PACKAGE_luci-app-jd-dailybonus=y
+CONFIG_PACKAGE_luci-app-accesscontrol=y
+CONFIG_PACKAGE_luci-app-netdata=y
+CONFIG_PACKAGE_luci-i18n-netdata-zh-cn=y
+CONFIG_PACKAGE_luci-app-adbyby-plus=y
+CONFIG_PACKAGE_luci-app-adguardhome=n #adguard home
+CONFIG_PACKAGE_luci-app-aria2=n
+CONFIG_PACKAGE_luci-app-arpbind=y
+CONFIG_PACKAGE_luci-app-autoreboot=n
+CONFIG_PACKAGE_luci-app-cifs-mount=y
+CONFIG_PACKAGE_luci-app-cifsd=y
 CONFIG_DEFAULT_luci-app-cpufreq=y
-CONFIG_DEFAULT_luci-app-ddns=y
-CONFIG_DEFAULT_luci-app-filetransfer=y
-CONFIG_DEFAULT_luci-app-flowoffload=y
-CONFIG_DEFAULT_luci-app-nlbwmon=y
-CONFIG_DEFAULT_luci-app-ramfree=y
-CONFIG_DEFAULT_luci-app-ssr-plus=y
-CONFIG_DEFAULT_luci-app-unblockmusic=y
-CONFIG_DEFAULT_luci-app-upnp=y
-CONFIG_DEFAULT_luci-app-vlmcsd=y
-CONFIG_DEFAULT_luci-app-vsftpd=y
-CONFIG_DEFAULT_luci-app-webadmin=y
-CONFIG_DEFAULT_luci-app-wol=y
-CONFIG_DEFAULT_mtd=y
-CONFIG_DEFAULT_netifd=y
-CONFIG_DEFAULT_opkg=y
-CONFIG_DEFAULT_ppp=y
-CONFIG_DEFAULT_ppp-mod-pppoe=y
-CONFIG_DEFAULT_swconfig=y
-CONFIG_DEFAULT_uci=y
-CONFIG_DEFAULT_uclient-fetch=y
-CONFIG_DEFAULT_urandom-seed=y
-CONFIG_DEFAULT_urngd=y
-CONFIG_DEFAULT_wget=y
-CONFIG_DEFAULT_wpad-openssl=y
-CONFIG_AUDIO_SUPPORT=y
-CONFIG_GPIO_SUPPORT=y
-CONFIG_PCI_SUPPORT=y
-CONFIG_USB_SUPPORT=y
-CONFIG_RTC_SUPPORT=y
-CONFIG_USES_DEVICETREE=y
-CONFIG_USES_INITRAMFS=y
-CONFIG_USES_SQUASHFS=y
-CONFIG_USES_MINOR=y
-CONFIG_HAS_MIPS16=y
-CONFIG_NAND_SUPPORT=y
-CONFIG_mipsel=y
-CONFIG_ARCH="mipsel"
+CONFIG_PACKAGE_luci-app-ddns=y
+CONFIG_PACKAGE_luci-app-dnspod=n
+CONFIG_PACKAGE_luci-app-dnsforwarder=n
+CONFIG_PACKAGE_luci-app-filetransfer=n
+CONFIG_PACKAGE_luci-app-firewall=y
+CONFIG_PACKAGE_luci-app-flowoffload=y
+CONFIG_PACKAGE_luci-app-frpc=y
+CONFIG_PACKAGE_luci-app-ipsec-vpnd=n
+CONFIG_PACKAGE_luci-app-mwan3=n
+CONFIG_PACKAGE_luci-app-mwan3helper=n
+CONFIG_PACKAGE_luci-app-nlbwmon=n
+CONFIG_PACKAGE_luci-app-pptp-server=n
+CONFIG_PACKAGE_luci-app-ramfree=y
+CONFIG_PACKAGE_luci-app-samba=n
+CONFIG_PACKAGE_luci-app-serverchan=y
+CONFIG_PACKAGE_luci-app-sqm=n
+CONFIG_PACKAGE_luci-app-ssr-plus=y
+CONFIG_PACKAGE_luci-app-syncdial=n
+CONFIG_PACKAGE_luci-app-transmission=n
+CONFIG_PACKAGE_luci-app-ttyd=y
+CONFIG_PACKAGE_luci-app-uhttpd=y
+CONFIG_PACKAGE_luci-app-unblockmusic=y
+CONFIG_UnblockNeteaseMusic_Go=y
+CONFIG_UnblockNeteaseMusic_NodeJS=y
+CONFIG_PACKAGE_luci-app-upnp=y
+CONFIG_PACKAGE_luci-app-usb-printer=y
+CONFIG_PACKAGE_luci-app-v2ray-server=y
+CONFIG_PACKAGE_luci-app-vlmcsd=y
+CONFIG_PACKAGE_luci-app-vsftpd=y
+CONFIG_PACKAGE_luci-app-wifischedule=y
+CONFIG_PACKAGE_luci-app-wol=y
+CONFIG_PACKAGE_luci-app-xlnetacc=n
+CONFIG_PACKAGE_luci-app-zerotier=y
+CONFIG_PACKAGE_luci-app-diskman=y
+CONFIG_PACKAGE_luci-app-mtwifi=n
+# CONFIG_PACKAGE_qBittorrent is not set
+# CONFIG_DEFAULT_luci-app-qbittorrent is not set
 
 #
-# Root filesystem images
+# 主题
 #
-# CONFIG_TARGET_ROOTFS_EXT4FS is not set
-CONFIG_TARGET_ROOTFS_SQUASHFS=y
-CONFIG_TARGET_SQUASHFS_BLOCK_SIZE=256
-CONFIG_TARGET_UBIFS_FREE_SPACE_FIXUP=y
-CONFIG_TARGET_UBIFS_JOURNAL_SIZE=""
+CONFIG_PACKAGE_luci-theme-argon=y
+CONFIG_PACKAGE_luci-theme-bootstrap=n
+
+#
+# 基础命令及其他
+#
+CONFIG_PACKAGE_openssh-sftp-server=y
+CONFIG_PACKAGE_nano=y
+CONFIG_PACKAGE_fdisk=y
+CONFIG_PACKAGE_bash=y
+CONFIG_PACKAGE_lscpu=y
+CONFIG_PACKAGE_mount-utils=y
 
 EOF
 
@@ -289,7 +315,7 @@ CONFIG_PACKAGE_luci-app-autoreboot=y #定时重启
 CONFIG_PACKAGE_luci-app-upnp=y #通用即插即用UPnP(端口自动转发)
 # CONFIG_PACKAGE_luci-app-accesscontrol is not set #上网时间控制
 # CONFIG_PACKAGE_luci-app-wol is not set #网络唤醒
-CONFIG_PACKAGE_luci-app-frps=y
+#CONFIG_PACKAGE_luci-app-frps=y
 CONFIG_PACKAGE_luci-app-frpc=y #Frp内网穿透
 CONFIG_PACKAGE_luci-app-nlbwmon=y #宽带流量监控
 CONFIG_PACKAGE_luci-app-wrtbwmon=y #实时流量监测
@@ -316,11 +342,11 @@ CONFIG_PACKAGE_luci-i18n-unblockmusic-zh-cn=y
 #
 # VPN相关插件(禁用):
 #
-CONFIG_PACKAGE_luci-app-v2ray-server=y #V2ray服务器
+#CONFIG_PACKAGE_luci-app-v2ray-server=y #V2ray服务器
 # CONFIG_PACKAGE_luci-app-pptp-server is not set #PPTP VPN 服务器
 # CONFIG_PACKAGE_luci-app-ipsec-vpnd is not set #ipsec VPN服务
 # CONFIG_PACKAGE_luci-app-openvpn-server is not set #openvpn服务
-CONFIG_PACKAGE_luci-app-softethervpn=y #SoftEtherVPN服务器
+#CONFIG_PACKAGE_luci-app-softethervpn=y #SoftEtherVPN服务器
 #
 # 文件共享相关(禁用):
 #
