@@ -160,71 +160,21 @@ CONFIG_PACKAGE_wpa-supplicant=y
 #
 # 插件集成
 #
-CONFIG_PACKAGE_luci-app-jd-dailybonus=y
-CONFIG_PACKAGE_luci-app-accesscontrol=y
 CONFIG_PACKAGE_luci-app-netdata=y
 CONFIG_PACKAGE_luci-i18n-netdata-zh-cn=y
-CONFIG_PACKAGE_luci-app-adbyby-plus=y
-CONFIG_PACKAGE_luci-app-adguardhome=n #adguard home
-CONFIG_PACKAGE_luci-app-aria2=n
 CONFIG_PACKAGE_luci-app-arpbind=y
-CONFIG_PACKAGE_luci-app-autoreboot=n
 CONFIG_PACKAGE_luci-app-cifs-mount=y
 CONFIG_PACKAGE_luci-app-cifsd=y
 CONFIG_DEFAULT_luci-app-cpufreq=y
 CONFIG_PACKAGE_luci-app-ddns=y
-CONFIG_PACKAGE_luci-app-dnspod=n
-CONFIG_PACKAGE_luci-app-dnsforwarder=n
-CONFIG_PACKAGE_luci-app-filetransfer=n
 CONFIG_PACKAGE_luci-app-firewall=y
 CONFIG_PACKAGE_luci-app-flowoffload=y
-CONFIG_PACKAGE_luci-app-frpc=y
-CONFIG_PACKAGE_luci-app-ipsec-vpnd=n
-CONFIG_PACKAGE_luci-app-mwan3=n
-CONFIG_PACKAGE_luci-app-mwan3helper=n
-CONFIG_PACKAGE_luci-app-nlbwmon=n
-CONFIG_PACKAGE_luci-app-pptp-server=n
 CONFIG_PACKAGE_luci-app-ramfree=y
-CONFIG_PACKAGE_luci-app-samba=n
-CONFIG_PACKAGE_luci-app-serverchan=y
-CONFIG_PACKAGE_luci-app-sqm=n
-CONFIG_PACKAGE_luci-app-ssr-plus=y
-CONFIG_PACKAGE_luci-app-syncdial=n
-CONFIG_PACKAGE_luci-app-transmission=n
-CONFIG_PACKAGE_luci-app-ttyd=y
-CONFIG_PACKAGE_luci-app-uhttpd=y
-CONFIG_PACKAGE_luci-app-unblockmusic=y
-CONFIG_UnblockNeteaseMusic_Go=y
-CONFIG_UnblockNeteaseMusic_NodeJS=y
-CONFIG_PACKAGE_luci-app-upnp=y
 CONFIG_PACKAGE_luci-app-usb-printer=y
-CONFIG_PACKAGE_luci-app-v2ray-server=y
-CONFIG_PACKAGE_luci-app-vlmcsd=y
-CONFIG_PACKAGE_luci-app-vsftpd=y
 CONFIG_PACKAGE_luci-app-wifischedule=y
-CONFIG_PACKAGE_luci-app-wol=y
-CONFIG_PACKAGE_luci-app-xlnetacc=n
-CONFIG_PACKAGE_luci-app-zerotier=y
-CONFIG_PACKAGE_luci-app-diskman=y
 CONFIG_PACKAGE_luci-app-mtwifi=n
 # CONFIG_PACKAGE_qBittorrent is not set
 # CONFIG_DEFAULT_luci-app-qbittorrent is not set
-
-#
-# 主题
-#
-CONFIG_PACKAGE_luci-theme-argon=y
-CONFIG_PACKAGE_luci-theme-bootstrap=n
-
-#
-# 基础命令及其他
-#
-CONFIG_PACKAGE_openssh-sftp-server=y
-CONFIG_PACKAGE_nano=y
-CONFIG_PACKAGE_fdisk=y
-CONFIG_PACKAGE_bash=y
-CONFIG_PACKAGE_lscpu=y
-CONFIG_PACKAGE_mount-utils=y
 
 EOF
 
@@ -308,25 +258,25 @@ EOF
 # 常用LuCI插件:
 cat >> .config <<EOF
 CONFIG_PACKAGE_luci-app-adbyby-plus=y #adbyby去广告
-# CONFIG_PACKAGE_luci-app-webadmin is not set #Web管理页面设置
+CONFIG_PACKAGE_luci-app-webadmin=y #Web管理页面设置
 CONFIG_PACKAGE_luci-app-ddns=y #DDNS服务
 CONFIG_DEFAULT_luci-app-vlmcsd=y #KMS激活服务器
 CONFIG_PACKAGE_luci-app-filetransfer=y #系统-文件传输
 CONFIG_PACKAGE_luci-app-autoreboot=y #定时重启
 CONFIG_PACKAGE_luci-app-upnp=y #通用即插即用UPnP(端口自动转发)
-# CONFIG_PACKAGE_luci-app-accesscontrol is not set #上网时间控制
-# CONFIG_PACKAGE_luci-app-wol is not set #网络唤醒
+CONFIG_PACKAGE_luci-app-accesscontrol=y #上网时间控制
+CONFIG_PACKAGE_luci-app-wol=y #网络唤醒
 #CONFIG_PACKAGE_luci-app-frps=y
 CONFIG_PACKAGE_luci-app-frpc=y #Frp内网穿透
 CONFIG_PACKAGE_luci-app-nlbwmon=y #宽带流量监控
 CONFIG_PACKAGE_luci-app-wrtbwmon=y #实时流量监测
 CONFIG_PACKAGE_luci-app-ttyd=y
 CONFIG_PACKAGE_luci-i18n-ttyd-zh-cn=y
-# CONFIG_PACKAGE_luci-app-zerotier is not set #zerotier内网穿透
-# CONFIG_PACKAGE_luci-app-sfe is not set #高通开源的 Shortcut FE 转发加速引擎
-# CONFIG_PACKAGE_luci-app-flowoffload is not set #开源 Linux Flow Offload 驱动
+CONFIG_PACKAGE_luci-app-zerotier=y #zerotier内网穿透
+CONFIG_PACKAGE_luci-app-sfe=y #高通开源的 Shortcut FE 转发加速引擎
+CONFIG_PACKAGE_luci-app-flowoffload=y #开源 Linux Flow Offload 驱动
 # CONFIG_PACKAGE_luci-app-haproxy-tcp is not set #Haproxy负载均衡
-# CONFIG_PACKAGE_luci-app-diskman is not set #磁盘管理磁盘信息
+CONFIG_PACKAGE_luci-app-diskman=y #磁盘管理磁盘信息
 # CONFIG_PACKAGE_luci-app-transmission is not set #TR离线下载
 # CONFIG_PACKAGE_luci-app-qbittorrent is not set #QB离线下载
 # CONFIG_PACKAGE_luci-app-amule is not set #电驴离线下载
@@ -363,6 +313,7 @@ cat >> .config <<EOF
 CONFIG_PACKAGE_luci-theme-argon=y
 CONFIG_PACKAGE_luci-app-argon-config=y
 CONFIG_PACKAGE_luci-theme-material=y
+CONFIG_PACKAGE_luci-theme-bootstrap=n
 # CONFIG_PACKAGE_luci-theme-netgear is not set
 # CONFIG_PACKAGE_luci-theme-edge is not set
 EOF
@@ -380,14 +331,18 @@ CONFIG_PACKAGE_bash=y
 CONFIG_PACKAGE_kmod-tun=y
 CONFIG_PACKAGE_libcap=y
 CONFIG_PACKAGE_libcap-bin=y
-# CONFIG_PACKAGE_ip6tables-mod-nat=y
+CONFIG_PACKAGE_ip6tables-mod-nat=y
 CONFIG_PACKAGE_iptables-mod-extra=y
 CONFIG_PACKAGE_ttyd=y
+CONFIG_PACKAGE_openssh-sftp-server=y
+CONFIG_PACKAGE_fdisk=y
+CONFIG_PACKAGE_lscpu=y
+CONFIG_PACKAGE_mount-utils=y
 EOF
 
 # 其他软件包:
 cat >> .config <<EOF
-CONFIG_HAS_FPU=y
+#CONFIG_HAS_FPU=y
 EOF
 
 
