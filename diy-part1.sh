@@ -82,6 +82,7 @@ touch ./.config
 # 
 
 # 编译nwf3固件:
+cat >> .config <<EOF
 #
 # 机型选择
 #
