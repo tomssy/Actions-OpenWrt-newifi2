@@ -338,6 +338,7 @@ CONFIG_PACKAGE_openssh-sftp-server=y
 CONFIG_PACKAGE_fdisk=y
 CONFIG_PACKAGE_lscpu=y
 CONFIG_PACKAGE_mount-utils=y
+CONFIG_PACKAGE_xray-core=y
 EOF
 
 # 其他软件包:
