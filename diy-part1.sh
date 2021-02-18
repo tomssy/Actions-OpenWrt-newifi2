@@ -146,6 +146,7 @@ CONFIG_PACKAGE_kmod-usb3=y
 CONFIG_PACKAGE_kmod-usb-video=y
 CONFIG_PACKAGE_kmod-video-core=y
 CONFIG_PACKAGE_kmod-video-uvc=y
+CONFIG_PACKAGE_kmod-input-core=y
 
 #
 # 无线驱动
@@ -339,6 +340,8 @@ CONFIG_PACKAGE_ttyd=y
 CONFIG_PACKAGE_openssh-sftp-server=y
 CONFIG_PACKAGE_fdisk=y
 CONFIG_PACKAGE_lscpu=y
+CONFIG_PACKAGE_lsusb=y
+CONFIG_PACKAGE_libjpeg=y
 CONFIG_PACKAGE_mount-utils=y
 CONFIG_PACKAGE_xray-core=y
 EOF
