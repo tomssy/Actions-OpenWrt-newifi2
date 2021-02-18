@@ -160,8 +160,8 @@ CONFIG_PACKAGE_wpa-supplicant=y
 #
 # 插件集成
 #
-CONFIG_PACKAGE_luci-app-netdata=y
-CONFIG_PACKAGE_luci-i18n-netdata-zh-cn=y
+#CONFIG_PACKAGE_luci-app-netdata=y
+#CONFIG_PACKAGE_luci-i18n-netdata-zh-cn=y
 CONFIG_PACKAGE_luci-app-arpbind=y
 CONFIG_PACKAGE_luci-app-cifs-mount=y
 CONFIG_PACKAGE_luci-app-cifsd=y
