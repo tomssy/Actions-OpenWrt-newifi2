@@ -143,6 +143,9 @@ CONFIG_PACKAGE_kmod-usb-storage-extras=y
 CONFIG_PACKAGE_kmod-usb-uhci=y
 CONFIG_PACKAGE_kmod-usb2=y
 CONFIG_PACKAGE_kmod-usb3=y
+CONFIG_PACKAGE_kmod-usb-video=y
+CONFIG_PACKAGE_kmod-video-core=y
+CONFIG_PACKAGE_kmod-video-uvc=y
 
 #
 # 无线驱动
@@ -165,7 +168,6 @@ CONFIG_PACKAGE_wpa-supplicant=y
 # 插件集成
 #
 CONFIG_PACKAGE_luci-app-arpbind=y
-CONFIG_DEFAULT_luci-app-cpufreq=y
 CONFIG_PACKAGE_luci-app-usb-printer=y
 CONFIG_PACKAGE_luci-app-wifischedule=y
 CONFIG_PACKAGE_luci-app-mtwifi=n
@@ -193,10 +195,10 @@ EOF
 
 # 第三方插件选择:
 cat >> .config <<EOF
-#CONFIG_PACKAGE_luci-app-netdata=y #实时状态
-#CONFIG_PACKAGE_luci-i18n-netdata-zh-cn=y
-#CONFIG_PACKAGE_luci-app-cifs-mount=y # 挂载网络存储
-#CONFIG_PACKAGE_luci-app-cifsd=y
+# CONFIG_PACKAGE_luci-app-netdata=y #实时状态
+# CONFIG_PACKAGE_luci-i18n-netdata-zh-cn=y
+# CONFIG_PACKAGE_luci-app-cifs-mount=y # 挂载网络存储
+# CONFIG_PACKAGE_luci-app-cifsd=y
 # CONFIG_PACKAGE_luci-app-oaf=y #应用过滤
 CONFIG_PACKAGE_luci-app-openclash=n #OpenClash
 CONFIG_PACKAGE_luci-app-jd-dailybonus=y #京东签到
