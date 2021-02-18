@@ -42,6 +42,10 @@ sed -i 's#192.168.1.1#192.168.123.1#g' package/base-files/files/bin/config_gener
 # sed -i 's#option database_directory /var/lib/nlbwmon#option database_directory /etc/config/nlbwmon_data#g' feeds/packages/net/nlbwmon/files/nlbwmon.config #修改流量统计数据存放默认位置
 # sed -i 's@background-color: #e5effd@background-color: #f8fbfe@g' package/luci-theme-edge/htdocs/luci-static/edge/cascade.css #luci-theme-edge主题颜色微调
 # sed -i 's#rgba(223, 56, 18, 0.04)#rgba(223, 56, 18, 0.02)#g' package/luci-theme-edge/htdocs/luci-static/edge/cascade.css #luci-theme-edge主题颜色微调
+echo '修改wifi名称'
+sed -i 's/OpenWrt/newifi3/g' package/kernel/mac80211/files/lib/wifi/mac80211.sh
+echo '修改机器名称'
+sed -i 's/OpenWrt/newifi3/g' package/base-files/files/bin/config_generate
 
 #创建自定义配置文件 - OpenWrt-x86-64
 
@@ -160,19 +164,11 @@ CONFIG_PACKAGE_wpa-supplicant=y
 #
 # 插件集成
 #
-#CONFIG_PACKAGE_luci-app-netdata=y
-#CONFIG_PACKAGE_luci-i18n-netdata-zh-cn=y
 CONFIG_PACKAGE_luci-app-arpbind=y
-CONFIG_PACKAGE_luci-app-cifs-mount=y
-CONFIG_PACKAGE_luci-app-cifsd=y
 CONFIG_DEFAULT_luci-app-cpufreq=y
-CONFIG_PACKAGE_luci-app-firewall=y
-CONFIG_PACKAGE_luci-app-ramfree=y
 CONFIG_PACKAGE_luci-app-usb-printer=y
 CONFIG_PACKAGE_luci-app-wifischedule=y
 CONFIG_PACKAGE_luci-app-mtwifi=n
-# CONFIG_PACKAGE_qBittorrent is not set
-# CONFIG_DEFAULT_luci-app-qbittorrent is not set
 
 EOF
 
@@ -197,6 +193,10 @@ EOF
 
 # 第三方插件选择:
 cat >> .config <<EOF
+#CONFIG_PACKAGE_luci-app-netdata=y #实时状态
+#CONFIG_PACKAGE_luci-i18n-netdata-zh-cn=y
+#CONFIG_PACKAGE_luci-app-cifs-mount=y # 挂载网络存储
+#CONFIG_PACKAGE_luci-app-cifsd=y
 # CONFIG_PACKAGE_luci-app-oaf=y #应用过滤
 CONFIG_PACKAGE_luci-app-openclash=n #OpenClash
 CONFIG_PACKAGE_luci-app-jd-dailybonus=y #京东签到
@@ -212,6 +212,7 @@ CONFIG_PACKAGE_luci-app-ssr-plus=y
 CONFIG_PACKAGE_luci-app-ssr-plus_INCLUDE_Trojan=y
 CONFIG_PACKAGE_luci-app-ssr-plus_INCLUDE_Shadowsocks=y
 CONFIG_PACKAGE_luci-app-ssr-plus_INCLUDE_Xray=y
+CONFIG_PACKAGE_luci-app-ssr-plus_INCLUDE_ShadowsocksR_Server=y
 EOF
 
 # Passwall插件:
@@ -288,6 +289,7 @@ CONFIG_PACKAGE_luci-i18n-unblockmusic-zh-cn=y
 # CONFIG_PACKAGE_luci-app-music-remote-center is not set #PCHiFi数字转盘遥控
 # CONFIG_PACKAGE_luci-app-usb-printer is not set #USB打印机
 # CONFIG_PACKAGE_luci-app-sqm is not set #SQM智能队列管理
+CONFIG_PACKAGE_luci-app-mjpg-streamer=y
 #
 # VPN相关插件(禁用):
 #
