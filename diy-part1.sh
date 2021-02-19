@@ -134,7 +134,6 @@ CONFIG_PACKAGE_kmod-sdhci=y
 CONFIG_PACKAGE_kmod-mmc-spi=y
 CONFIG_PACKAGE_kmod-usb-core=y
 CONFIG_PACKAGE_kmod-usb-dwc3=y
-CONFIG_PACKAGE_kmod-usb-dwc3-of-simple=y
 CONFIG_PACKAGE_kmod-usb-ehci=y
 CONFIG_PACKAGE_kmod-usb-ohci=y
 CONFIG_PACKAGE_kmod-usb-printer=y
@@ -143,10 +142,9 @@ CONFIG_PACKAGE_kmod-usb-storage-extras=y
 CONFIG_PACKAGE_kmod-usb-uhci=y
 CONFIG_PACKAGE_kmod-usb2=y
 CONFIG_PACKAGE_kmod-usb3=y
-CONFIG_PACKAGE_kmod-usb-video=y
 CONFIG_PACKAGE_kmod-video-core=y
 CONFIG_PACKAGE_kmod-video-uvc=y
-CONFIG_PACKAGE_kmod-input-core=y
+
 
 #
 # 无线驱动
@@ -293,6 +291,10 @@ CONFIG_PACKAGE_luci-i18n-unblockmusic-zh-cn=y
 # CONFIG_PACKAGE_luci-app-usb-printer is not set #USB打印机
 # CONFIG_PACKAGE_luci-app-sqm is not set #SQM智能队列管理
 CONFIG_PACKAGE_luci-app-mjpg-streamer=y
+CONFIG_PACKAGE_mjpg-streamer=y
+CONFIG_PACKAGE_mjpg-streamer-input-uvc=y
+CONFIG_PACKAGE_mjpg-streamer-output-http=y
+CONFIG_PACKAGE_mjpg-streamer-www-simple=y
 #
 # VPN相关插件(禁用):
 #
@@ -341,7 +343,6 @@ CONFIG_PACKAGE_openssh-sftp-server=y
 CONFIG_PACKAGE_fdisk=y
 CONFIG_PACKAGE_lscpu=y
 CONFIG_PACKAGE_lsusb=y
-CONFIG_PACKAGE_libjpeg=y
 CONFIG_PACKAGE_mount-utils=y
 CONFIG_PACKAGE_xray-core=y
 EOF
