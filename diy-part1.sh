@@ -142,8 +142,8 @@ CONFIG_PACKAGE_kmod-usb-storage-extras=y
 CONFIG_PACKAGE_kmod-usb-uhci=y
 CONFIG_PACKAGE_kmod-usb2=y
 CONFIG_PACKAGE_kmod-usb3=y
-CONFIG_PACKAGE_kmod-video-core=y
-CONFIG_PACKAGE_kmod-video-uvc=y
+#CONFIG_PACKAGE_kmod-video-core=y
+#CONFIG_PACKAGE_kmod-video-uvc=y
 
 
 #
@@ -200,7 +200,7 @@ cat >> .config <<EOF
 # CONFIG_PACKAGE_luci-app-cifsd=y
 # CONFIG_PACKAGE_luci-app-oaf=y #应用过滤
 CONFIG_PACKAGE_luci-app-openclash=n #OpenClash
-CONFIG_PACKAGE_luci-app-jd-dailybonus=y #京东签到
+#CONFIG_PACKAGE_luci-app-jd-dailybonus=y #京东签到
 CONFIG_PACKAGE_luci-app-serverchan=y #微信推送
 # CONFIG_PACKAGE_luci-app-eqos is not set #IP限速
 # CONFIG_PACKAGE_luci-app-smartdns is not set #smartdns服务器
@@ -290,11 +290,11 @@ CONFIG_PACKAGE_luci-i18n-unblockmusic-zh-cn=y
 # CONFIG_PACKAGE_luci-app-music-remote-center is not set #PCHiFi数字转盘遥控
 # CONFIG_PACKAGE_luci-app-usb-printer is not set #USB打印机
 # CONFIG_PACKAGE_luci-app-sqm is not set #SQM智能队列管理
-CONFIG_PACKAGE_luci-app-mjpg-streamer=y
-CONFIG_PACKAGE_mjpg-streamer=y
-CONFIG_PACKAGE_mjpg-streamer-input-uvc=y
-CONFIG_PACKAGE_mjpg-streamer-output-http=y
-CONFIG_PACKAGE_mjpg-streamer-www-simple=y
+#CONFIG_PACKAGE_luci-app-mjpg-streamer=y
+#CONFIG_PACKAGE_mjpg-streamer=y
+#CONFIG_PACKAGE_mjpg-streamer-input-uvc=y
+#CONFIG_PACKAGE_mjpg-streamer-output-http=y
+#CONFIG_PACKAGE_mjpg-streamer-www-simple=y
 #
 # VPN相关插件(禁用):
 #
