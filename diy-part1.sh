@@ -92,7 +92,7 @@ cat >> .config <<EOF
 #
 CONFIG_TARGET_ramips=y
 CONFIG_TARGET_ramips_mt7621=y
-CONFIG_TARGET_ramips_mt7621_DEVICE_d-team_newifi-d2=y
+CONFIG_TARGET_ramips_mt7621_DEVICE_lenovo_newifi-d1=y
 
 #
 # IPV6支持
@@ -199,7 +199,7 @@ cat >> .config <<EOF
 # CONFIG_PACKAGE_luci-app-cifs-mount=y # 挂载网络存储
 # CONFIG_PACKAGE_luci-app-cifsd=y
 # CONFIG_PACKAGE_luci-app-oaf=y #应用过滤
-CONFIG_PACKAGE_luci-app-openclash=n #OpenClash
+#CONFIG_PACKAGE_luci-app-openclash=n #OpenClash
 #CONFIG_PACKAGE_luci-app-jd-dailybonus=y #京东签到
 CONFIG_PACKAGE_luci-app-serverchan=y #微信推送
 # CONFIG_PACKAGE_luci-app-eqos is not set #IP限速
@@ -262,7 +262,7 @@ CONFIG_PACKAGE_luci-app-webadmin=y #Web管理页面设置
 CONFIG_PACKAGE_luci-app-ddns=y #DDNS服务
 CONFIG_DEFAULT_luci-app-vlmcsd=y #KMS激活服务器
 CONFIG_PACKAGE_luci-app-filetransfer=y #系统-文件传输
-CONFIG_PACKAGE_luci-app-autoreboot=y #定时重启
+#CONFIG_PACKAGE_luci-app-autoreboot=y #定时重启
 CONFIG_PACKAGE_luci-app-upnp=y #通用即插即用UPnP(端口自动转发)
 CONFIG_PACKAGE_luci-app-accesscontrol=y #上网时间控制
 CONFIG_PACKAGE_luci-app-wol=y #网络唤醒
